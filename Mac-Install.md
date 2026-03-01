@@ -11,3 +11,7 @@ brew install opencv
 mkdir -p build && cd build
 cmake -D WITH_OPENMP=ON -D CMAKE_BUILD_TYPE=Release ..
 make
+
+# Models, Do not forget to install models
+
+sh download_models.sh
