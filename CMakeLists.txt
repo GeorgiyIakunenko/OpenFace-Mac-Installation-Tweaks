@@ -39,7 +39,11 @@ else()
     MESSAGE(FATAL_ERROR "OpenCV not found in the system.")
 endif()
 
-find_package( Boost 1.5.9 COMPONENTS filesystem system)
+# system is header-only in Boost 1.69+; Homebrew Boost may not ship libboost_system
+find_package( Boost 1.5.9 COMPONENTS filesystem)
+if(NOT Boost_FOUND)
+  find_package( Boost 1.5.9 COMPONENTS filesystem system)
+endif()
 if(${Boost_FOUND})
 	MESSAGE("Boost information:") 
 	MESSAGE("  Boost_VERSION: ${Boost_VERSION}")
